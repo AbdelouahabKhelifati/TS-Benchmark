@@ -12,7 +12,7 @@ import numpy as np
 from tqdm import tqdm
 import torch.nn.functional as F
 import os
-import cv2
+from tqdm import tqdm
 
 class D_Net(nn.Module):
     def __init__(self,bais=False):
@@ -105,9 +105,9 @@ if __name__ == '__main__':
     #     # 限制在一个给定的区间[min, max]内,[0,1]
     #     return out
     #
-    date=np.loadtxt('./column_23_3072_3072.txt',delimiter=',')
+    date=np.loadtxt('./column_23_3072_3072.txt',delimiter='\t')
     lis=[]
-    for i in range(3072):
+    for i in tqdm(range(3072)):
         lis.append(date[i].reshape((3,32,32))/10)
 
     print(len(lis))
@@ -131,7 +131,7 @@ if __name__ == '__main__':
             g_net.parameters(), lr=0.0002, betas=(0.5, 0.999))
     pbbox=[]
     bbox=[]
-    for epoch in range(6000):
+    for epoch in tqdm(range(6000)):
             for i, img in enumerate(dataloader):
                 for p in d_net.parameters(): p.data.clamp_(-0.01, 0.01)
                 # img = img / 10
