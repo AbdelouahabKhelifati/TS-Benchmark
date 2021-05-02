@@ -105,7 +105,7 @@ if __name__ == '__main__':
     #     # 限制在一个给定的区间[min, max]内,[0,1]
     #     return out
     #
-    date=np.loadtxt('./column_23_3072_3072.txt',delimiter=',')
+    date=np.loadtxt('./column_23_3072_3072_.txt',delimiter=',')
     print(date.shape)
     lis=[]
     for i in tqdm(range(3072)):
@@ -183,4 +183,3 @@ if __name__ == '__main__':
                                   real_scores.data.mean(), fake_scores.data.mean()))
                     print(d_loss_real,d_loss_fake)
                     torch.save(d_net.state_dict(), r"./gand_path")
-                    torch.save(g_net.state_dict(), r"./gang_path")
