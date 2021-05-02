@@ -15,6 +15,7 @@ import torch.nn.functional as F
 import os
 #import cv2
 
+
 class D_Net(nn.Module):
     def __init__(self,bais=False):
         super(D_Net,self).__init__()
@@ -129,7 +130,7 @@ if __name__ == '__main__':
     d_net.eval()
     g_net.eval()
     batch_size=1
-    date = np.loadtxt('./column_23_3072_3072.txt', delimiter='\t')
+    date = np.loadtxt('./res_shift_1800.txt', delimiter=',')
     lis = []
     for i in range(3072):
         lis.append(date[i].reshape((3, 32, 32))/10)

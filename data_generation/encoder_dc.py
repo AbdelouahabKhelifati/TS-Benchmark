@@ -12,7 +12,7 @@ import numpy as np
 from tqdm import tqdm
 import torch.nn.functional as F
 import os
-import cv2
+# import cv2
 
 
 class D_Net(nn.Module):
@@ -138,7 +138,7 @@ if __name__ == '__main__':
     #     return out
     #
     #
-    date = np.loadtxt('./column_23_3072_3072.txt', delimiter=',')
+    date = np.loadtxt('./res_shift_1800.txt', delimiter=',')
     lis = []
     for i in range(3072):
         lis.append(date[i].reshape((3, 32, 32))/10)
@@ -153,12 +153,12 @@ if __name__ == '__main__':
     g_net.load_state_dict(
                 torch.load(r"./gang_path"))
     try:
-        encoder_.load_state_dict(torch.load(r'E:\Project\GAN-abnormal detection\ME_DCGAN_Cartoon\ganen_path'))
+        encoder_.load_state_dict(torch.load(r'./ganen_path'))
         print('success')
     except:
         print('falied')
 
-    for epoch in range(6000):
+    for epoch in range(1):
             for i, img in enumerate(dataloader):
                 for p in d_net.parameters(): p.data.clamp_(-0.01, 0.01)
                 # img = img / 10

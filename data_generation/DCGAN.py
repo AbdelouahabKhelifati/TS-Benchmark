@@ -105,7 +105,7 @@ if __name__ == '__main__':
     #     # 限制在一个给定的区间[min, max]内,[0,1]
     #     return out
     #
-    date=np.loadtxt('./column_23_3072_3072_.txt',delimiter=',')
+    date=np.loadtxt('./res_shift_1800.txt',delimiter=',')
     print(date.shape)
     lis=[]
     for i in tqdm(range(3072)):
@@ -132,7 +132,7 @@ if __name__ == '__main__':
             g_net.parameters(), lr=0.0002, betas=(0.5, 0.999))
     pbbox=[]
     bbox=[]
-    for epoch in tqdm(range(6000)):
+    for epoch in tqdm(range(1)):
             for i, img in enumerate(dataloader):
                 for p in d_net.parameters(): p.data.clamp_(-0.01, 0.01)
                 # img = img / 10
@@ -183,3 +183,4 @@ if __name__ == '__main__':
                                   real_scores.data.mean(), fake_scores.data.mean()))
                     print(d_loss_real,d_loss_fake)
                     torch.save(d_net.state_dict(), r"./gand_path")
+                    torch.save(g_net.state_dict(), r"./gang_path")
